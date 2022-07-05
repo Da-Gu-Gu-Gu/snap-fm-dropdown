@@ -11,6 +11,7 @@ main{
     height: 100vh;
     overflow-x: hidden;
     background-color: hsl(0, 0%, 98%);
+   
 }
 
 a{
@@ -23,11 +24,12 @@ ul li{
 }
 
 nav{
+    overflow: hidden;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 50px;
     line-height: 50px;
-    /* z-index: 2; */
+ 
 }
 
 .logo{
@@ -40,6 +42,17 @@ nav{
     line-height: 50px;
     color:black;
 }
+
+.wrapper{
+display: flex;
+flex-grow: 1;
+visibility: visible;
+justify-content: space-between;
+transition: all 0.3s ease-in;
+}
+
+
+
 
 .links{
     flex-grow: 1;
@@ -68,17 +81,17 @@ nav{
     padding-left: 30px;
     padding-right: 30px;
     transition: all 0.3s ease-in;
-    display: none;
-    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
 }
 
 .link-icon{
     margin-right: 10px;
 }
 
-.links>li>a{
+.links>li>a,.show{
     height:100%;
-    /* border:1px solid black; */
     width: 100%;
     display: inline-block;
 
@@ -88,15 +101,18 @@ nav{
     color:black;
     
 }
+.links>li:hover >a>img{
+    transform: rotate(180deg);
+}
 
 .links>li:hover >.sub-menu{
-    transition: all 1s ease-in;
     display: block;
-    /* top:55px; */
+    top:50px;
+    opacity: 1;
+    visibility: visible;
 }
 
 .sub-menu>li{
-    /* background-color: red; */
     height: 35px;
 }
 
@@ -117,6 +133,8 @@ nav{
     color: black;
 }
 
+
+
 .learn:hover{
     background-color: white;
     color:black;
@@ -128,40 +146,74 @@ nav{
     width: 90px;
 }
 
+.menu{
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    display: none;
+    cursor: pointer;
+    line-height: 56px;
+}
+
+.menu-close{
+    display: none;
+    cursor: pointer;
+
+}
+
+.pc{
+    display: inline-block !important;
+}
+
+.show,.check,.company-check{
+    display: none !important;
+}
+
 /* landing */
 
 .landing{
-    margin: 0 auto;
-    margin-top: 20px;
     display: flex;
     width: 80vw;
-    height: 89vh;
+    height: 90%;
     padding-top: 30px;
-    padding-bottom: 30px;
-    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
 }
 
 .one,.two{
     width: 50%;
+    height: 100%;
+}
+
+.one{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
 }
 
 .two{
     height: 100%;
 }
 
-.land-img{ 
+.land-img-desktop{ 
+    margin: 0 auto;
     padding: 20px;   
-    width:100%; /*80*/
+    width:80%; 
     height: 100%;
+}
+
+.land-img-mobile{
+    display: none;
 }
 
 .label{
     margin-top:50px ;
-    margin-bottom:30px ;
+    margin-bottom:40px ;
 }
 
 h2{
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: bold;
 }
 
@@ -170,11 +222,12 @@ p{
     font-size: 18px;
     width: 80%;
     line-height: 25px;
-    margin-bottom:30px ;
+    margin-bottom:40px ;
 }
 
 .learn{
     width: 100px;
+    min-height: 35px;
     background-color: black;
     color:white;
     border-radius: 8px;
@@ -188,7 +241,116 @@ p{
      gap: 30px;
 }
 
+.sub-menu li{
+    position: relative !important;
+}
+
+
 @media(max-width:375px){
+    .close{
+        transform: translateX(100%);
+        display: none;
+     
+        overflow: hidden;
+        transition: all 0.3s ease-in;
+    }
+
+
+    .logo{
+        padding-left: 20px;
+        width: max-content;
+    }
+
+    .wrapper,.links{
+        flex-direction: column;
+    }
+
+    .links{
+        flex-grow: unset;
+        width: 80%;
+        margin: 0px auto;
+        margin-bottom: 0;
+    }
+    .wrapper{
+        position: absolute;
+        justify-content: normal;
+        right: 0;
+        width:max-content;
+        transform: translateX(0);
+        overflow: hidden;
+        height: 100vh;
+        background-color: white;
+        transition: transform 0.3s ease-in-out;
+        -webkit-box-shadow: -200px -1px 0px 2px rgba(0,0,0,0.61);
+        -moz-box-shadow: -200px -1px 0px 2px rgba(0,0,0,0.61);
+        box-shadow: -200px -1px 0px 2px rgba(0,0,0,0.61);
+    }
+    .btns{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pc{
+        display: none !important;
+    }
+
+    .sub-menu{
+        
+        position:static !important;
+        max-height: 0vh;
+        padding: 0px ;
+        top:-20px;
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        box-shadow: none !important;
+        visibility: hidden;
+        overflow: hidden !important;
+    }
+
+    .show{
+        height: max-content;
+        display: inline-block !important;
+    }
+
+
+    
+    .check:checked ~ .sub-menu,.company-check:checked ~ .sub-menu{
+        padding: 10px ;
+        padding-top: 0;
+        max-height: 100vh;
+        display: block !important;
+        opacity: 1;
+        visibility: visible;
+        
+    }
+
+    .check:checked ~ label>img,.company-check:checked ~ label>img{ 
+        transform: rotate(180deg);
+    }
+
+    .register,.login{
+        width: 80%;
+    }
+
+    .menu,.menu-close{
+        display: block;
+    }
+    .menu-close>img{
+        padding:10px;
+        padding-right: 20px;
+        float: right;  
+    }
+
+    .has-sub-menu{
+        display: flex;
+        flex-direction: column;
+        height: max-content !important;
+    }
+
+
     .landing{
         width: 100vw;
         padding: 0;
@@ -202,12 +364,12 @@ p{
     }
     .one{
         height: 60%;
+        justify-content: start;
     }
     .label{
         margin-top:20px ;
         margin-bottom:20px ;
         display: flex;
-        /* border:1px solid blue; */
         justify-content:center;
     }
     h2{
@@ -222,8 +384,13 @@ p{
         font-size: 15px;
         margin-bottom: 20px;
     }
-    .land-img{
-        padding: 0;
+    .land-img-mobile{
+       width: 100%;
+       height: 100%;
+       display: block;
+    }
+    .land-img-desktop{
+        display: none;
     }
     .learn{
         margin:0 auto;
@@ -231,9 +398,11 @@ p{
     }
 
     .client{
-        margin-top: 20px;
+        margin: 30px auto;
         display: flex;
-        gap: 30px;
-        /* margin-bottom: 40px; */
+        padding: 10px;
+        width: 100%;
+        gap: 0px;
+        justify-content: space-around;
    }
 }

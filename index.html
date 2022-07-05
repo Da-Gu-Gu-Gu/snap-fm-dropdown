@@ -24,8 +24,18 @@
   <header>
     <nav>
       <p class="logo">snap</p>
+      <div class="wrapper" id="wrapper">
+        <div class="menu-close"  >
+          <img src="./images/icon-close-menu.svg" alt="menu-close"  id="menu-close" />
+        </div>
       <ul class="links">
-          <li><a href="#">Features 
+          <li class="has-sub-menu">
+
+  
+          <input type="checkbox" name="feature" id="feature" class="check" >
+          <label for="feature" class="show">Features 
+            <img class="f-icon nav-icon" src="./images/icon-arrow-down.svg" alt="arrowdown"></label>
+          <a href="#" class="pc">Features 
             <img class="f-icon nav-icon" src="./images/icon-arrow-down.svg" alt="arrowdown">
           </a>
             <ul class="sub-menu">
@@ -43,7 +53,13 @@
                 Planning</a></li>
             </ul>
           </li>
-          <li><a href="#">Company
+          <li class="has-sub-menu">
+          
+          <input type="checkbox" name="company" id="company" class="company-check" >
+          <label for="company" class="show">Company 
+            <img class="c-icon nav-icon" src="./images/icon-arrow-down.svg" alt="arrowdown">
+          </label> 
+          <a href="#" class="pc">Company
             <img class="c-icon nav-icon" src="./images/icon-arrow-down.svg" alt="arrowdown">
           </a>
           <ul class="sub-menu">
@@ -59,6 +75,11 @@
         <button class="login">Login</button>
         <button class="register">Register</button>
       </div>
+    </div>
+      <div class="menu" >
+      <img src="./images/icon-menu.svg" alt="menu" id="menu-open" />
+    </div>
+  
     </nav>
   </header>
 
@@ -78,12 +99,26 @@
       </div>
     </div>
       <div class="two desktop">
-        <img src="./images/image-hero-mobile.png" alt="desktop" class="land-img">
-        <!-- <img src="./images/image-hero-desktop.png" alt="desktop" class="land-img"> -->
+        <img src="./images/image-hero-mobile.png" alt="mobile" class="land-img-mobile">
+        <img src="./images/image-hero-desktop.png" alt="desktop" class="land-img-desktop">
       </div>
   </section>
 
 </main>
- 
 </body>
+<script>
+  let menuClose=document.getElementById('menu-close')
+  let menuOpen=document.getElementById('menu-open')
+  let wrapper=document.getElementById('wrapper')
+
+  const close=()=>{
+    wrapper.classList.toggle('close')
+  }
+
+  menuClose.addEventListener('click',close)
+
+  menuOpen.addEventListener('click',close)
+
+</script>
+
 </html>
