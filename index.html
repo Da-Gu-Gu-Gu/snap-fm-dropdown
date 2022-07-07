@@ -112,12 +112,12 @@
   let wrapper=document.getElementById('wrapper')
 
   const close=()=>{
-    wrapper.classList.toggle('close')
+    wrapper.classList.toggle('active')
   }
 
-  menuClose.addEventListener('click',close)
+  menuClose.addEventListener('click',()=>close())
 
-  menuOpen.addEventListener('click',close)
+  menuOpen.addEventListener('click',()=>close())
 
 </script>
 
